@@ -1,1 +1,217 @@
+/* This selector will select any 'span' 
+element whose 'class' includes 'sr-only'. */
+/* Rather than having to constantly double-check you are not
+overwriting your earlier properties, you can use the
+'!imporant' keyword to ensure these properties are always
+applied, regardless of order or specificity. */
+span[class~="sr-only"] {
+    border: 0 !important;
+    /* The 'clip' property is used to define 
+    the visible portions of an element. */
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    /* The 'clip-path' property determines the 
+    shape the 'clip' property should take. 
+    Form the clip-path into a rectangle within the element.*/
+    clip-path: inset(50%) !important;
+    /* To size these elements down. */
+    width: 1px !important;
+    height: 1px !important;
+    /* To prevent the text content from overflowing.
+    https://www.w3schools.com/css/css_overflow.asp */
+    overflow: hidden !important;
+    /* https://www.w3schools.com/cssref/tryit.php?filename=trycss_text_white-space */
+    white-space: nowrap !important;
+    /* This will ensure that not only are they no longer visible,
+    but they are not even within the page view. */
+    position: absolute !important;
+    padding: 0 !important;
+    margin: -1px !important;
+}
 
+/* Reset the box model. */
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: #0a0a23;
+}
+
+h1 {
+    max-width: 37.25rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+}
+
+h1 .flex {
+    display: flex;
+    /* This will display the nested elements form bottom to top. */
+    flex-direction: column-reverse;
+    /* Create space between the elements. */
+    gap: 1rem;
+}
+
+/* The ':first-of-type' pseudo-selector is used to target the first
+element that matches the selector.
+Remember that your 'span' elements are reversed, visually,
+so this will appear to be the second element on the page. */
+h1 .flex span:first-of-type {
+    /* Make it look like a sub-heading. */
+    font-size: 0.7em;
+}
+
+/* The ':last-of-type' pseudo-selector does the exact opposite - 
+it targets the last element that matches the selector. */
+h1 .flex span:last-of-type {
+    /* Make it look like a header. */
+    font-size: 1.2em;
+}
+
+section {
+    max-width: 40rem;
+    margin: 0 auto;
+    border: 2px solid #d0d0d5;
+}
+
+/* To use 'id' attribute as a selector. */
+#years {
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    background: #0a0a23;
+    color: #fff;
+    /* The 'calc()' function is a CSS function that allows you to
+    calculate a value based on other values. For example, you can
+    use it to caluclate the width of the viewport minus the margin
+    of an element.
+    .example {
+        margin: 10px;
+        width: calc(100% - 20px);
+    } */
+    margin: 0 -2px;
+    padding: 0.5rem calc(1.25rem + 2px) 0.5rem 0;
+    /* Adding position 'sticky' moved the element into its own
+    stack. TO ensure your '#years' element does not get hidden
+    by different stacks, add a 'z-index' property set to '999' in
+    the '#years' rule. */
+    z-index: 999;
+}
+
+/* The 'span[class]' syntax will target any 'span' element
+that has a 'class' attribute set, regardless of the attribute's value. */
+#years span[class] {
+    font-weight: bold;
+    width: 4.5rem;
+    text-align: right;
+}
+
+.table-wrap {
+    padding: 0 0.75rem 1.5rem 0.75rem;
+}
+
+/* The ':not()' pseudo-selector is used to target all elements
+that do not match the selector - in this case, any of your
+'span' elements that do not have the 'sr-only' class. This
+ensures that your earlier rules for the 'span[class~="sr-only"]'
+selector are not overwritten. */
+/* Now that you have added the '!important' keyword, you
+can remove the ':not(.sr-only)' from your 'span' selector. */
+/* Since the 'span' elements now all have more specific styling,
+which means you can remove your 'span' rule.
+Precondition: span rule
+Postcondition: removed */
+
+table {
+    /* Setting the 'border-collapse' property to 'collapse' will
+    allow cell borders to collapse into a single border, instead
+    of a brder around each cell. */
+    border-collapse: collapse;
+    border: 0;
+    width: 100%;
+    position: relative;
+    margin-top: 3rem;
+}
+
+table caption {
+    color: #356eaf;
+    font-size: 1.3em;
+    font-weight: normal;
+    position: absolute;
+    top: -2.25rem;
+    left: 0.5rem;
+}
+
+tbody td {
+    /* A width to fill the viewport. */
+    width: 100vw;
+    min-width: 4rem;
+    max-width: 4rem;
+}
+
+tbody th {
+    /* The width is the widthe of the entire container, 
+    less 12rem. */
+    width: calc(100% - 12rem);
+}
+
+tr[class="total"] {
+    border-bottom: 4px double #0a0a23;
+    font-weight: bold;
+}
+
+tr[class="total"] th {
+    text-align: left;
+    padding: 0.5rem 0 0.25rem 0.5rem;
+}
+
+/* The key difference between 'tr[class="total"]' and 'tr.total' is 
+that the first will select 'tr' elements where the only class is 'total'.
+The second will select 'tr' elements where the class includes 'total' */
+tr.total td {
+    text-align: right;
+    padding: 0 0.25rem;
+}
+
+/* The ':nth-of-type()' pseudo-selector is used to target specific
+elements based on their order among siblings of the same type. */
+tr.total td:nth-of-type(3) {
+    padding-right: 0.5rem;
+}
+
+tr.total:hover {
+    background-color: #99c9ff;
+}
+
+td.current {
+    font-style: italic;
+}
+
+tr.data {
+    background-image: linear-gradient(to bottom, #dfdfe2 1.845rem, white 1.845rem);
+}
+
+tr.data th {
+    text-align: left;
+    padding-top: 0.3rem;
+    padding-left: 0.5rem;
+}
+
+tr.data th .description {
+    display: block;
+    font-style: italic;
+    font-weight: normal;
+    padding: 1rem 0 0.75rem;
+    margin-right: -13.5rem;
+}
+
+tr.data td {
+    vertical-align: top;
+    text-align: right;
+    padding: 0.4rem 0.25rem 0;
+}
+
+tr.data td:last-of-type {
+    padding-right: 0.5rem;
+}
